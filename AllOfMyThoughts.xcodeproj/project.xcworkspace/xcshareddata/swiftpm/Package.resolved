@@ -1,0 +1,15 @@
+{
+  "originHash" : "e3f528739d8e1681e84d7dd57c69e733882d508560dc5c3880fc9b5c303f7a45",
+  "pins" : [
+    {
+      "identity" : "opengraph",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/satoshi-takano/OpenGraph",
+      "state" : {
+        "revision" : "15fa71b31cf85695cf7035a077aaa624f679f53a",
+        "version" : "1.6.0"
+      }
+    }
+  ],
+  "version" : 3
+}
