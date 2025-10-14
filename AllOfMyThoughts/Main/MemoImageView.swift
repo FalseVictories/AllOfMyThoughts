@@ -15,35 +15,40 @@ struct MemoImageView: View {
                     }
             }
         }
+        .clipped()
     }
 }
 
-#Preview {
+#Preview("1 image"){
     MemoImageView(images:[Image(.testimage)]) { _ in
         print("Click")
     }
+    .frame(width: 350, height: 350)
 }
 
-#Preview {
+#Preview("2 image") {
     MemoImageView(images: [Image(.testimage),
                            Image(.testimage2)]) { _ in
         print("Click")
     }
+    .frame(width: 350, height: 350)
 }
 
-#Preview {
+#Preview("3 image") {
     MemoImageView(images:[Image(.testimage),
                           Image(.testimage2),
                           Image(.testimage3)]) { _ in
         print("Click")
     }
+    .frame(width: 350, height: 350)
 }
 
-#Preview {
+#Preview("4 image") {
     MemoImageView(images:[Image(.testimage),
                           Image(.testimage2),
                           Image(.testimage3),
                           Image(.testimage4)]) { _ in
         print("Click")
     }
+    .frame(width: 350, height: 350)
 }

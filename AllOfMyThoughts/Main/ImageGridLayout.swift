@@ -12,20 +12,22 @@ struct ImageGridLayout: Layout {
         
         if subviews.count == 1 {
             let subview = subviews[0]
-            subview.place(at: .zero, anchor: .topLeading, proposal: .init(bounds.size))
+            subview.place(at: bounds.origin,
+                          proposal: .init(bounds.size))
         } else if subviews.count == 2 {
             let width = bounds.width / 2
-            var x: CGFloat = 0
+            var x: CGFloat = bounds.minX
             
             for (_, subview) in subviews.enumerated() {
-                subview.place(at: .init(x: x, y: 0), proposal: .init(width: width, height: bounds.height))
+                subview.place(at: .init(x: x, y: bounds.minY),
+                              proposal: .init(width: width, height: bounds.height))
                 x += width
             }
         } else if subviews.count == 3 {
             var height = bounds.height
             let width = bounds.width / 2
-            var y: CGFloat = 0
-            var x: CGFloat = 0
+            var x: CGFloat = bounds.minX
+            var y: CGFloat = bounds.minY
             
             for (index, subview) in subviews.enumerated() {
                 subview.place(at: .init(x: x, y: y),
@@ -43,20 +45,19 @@ struct ImageGridLayout: Layout {
             
             for (index, subview) in subviews.enumerated() {
                 let x: CGFloat
-                var y: CGFloat = 0
+                var y: CGFloat = bounds.minY
                 
                 if index == 0 || index == 2 {
-                    x = 0
+                    x = bounds.minX
                 } else {
-                    x = width
+                    x = bounds.minX + width
                 }
                 
                 if index >= 2 {
-                    y = height
+                    y = bounds.minY + height
                 }
                 
                 subview.place(at: .init(x: x, y: y),
-                              anchor: .topLeading,
                               proposal: .init(width: width, height: height))
             }
         }
