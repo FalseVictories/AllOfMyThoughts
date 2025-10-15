@@ -9,17 +9,22 @@ struct LinkView: View {
     let url: URL
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             if let image {
                 image
                     .resizable()
-                    .frame(height: 400)
-                    .scaledToFill()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity,
+                           maxHeight: 200)
+                    .clipped()
             }
             
             Text(title)
+                .font(.caption)
             Text(summary)
+                .font(.footnote)
         }
+        .padding()
         .onTapGesture {
             openURL(url, prefersInApp: true)
         }
