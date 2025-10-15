@@ -6,7 +6,6 @@ import UIKit
 
 struct MemoEditorView: View {
     @Binding var visible: Bool
-    
     @Bindable var model: MemoEditorModel
     
     var body: some View {
@@ -27,10 +26,10 @@ struct MemoEditorView: View {
                         .frame(height: 100)
                 }
                 
-                ForEach(0..<model.addedLinks.count, id: \.self) { index in
+                if let addedLink = model.addedLink {
                     HStack {
                         Image(systemName: "link.badge.plus")
-                        Text(model.addedLinks[index].url.absoluteString)
+                        Text(addedLink.url.absoluteString)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
