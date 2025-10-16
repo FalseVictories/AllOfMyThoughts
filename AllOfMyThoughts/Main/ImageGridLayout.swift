@@ -2,7 +2,13 @@ import SwiftUI
 
 struct ImageGridLayout: Layout {
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
-        proposal.replacingUnspecifiedDimensions()
+        let proposal = proposal.replacingUnspecifiedDimensions()
+        
+        if (subviews.count == 1) {
+            let size = subviews[0].sizeThatFits(.init(proposal))
+            return .init(width: proposal.width, height: min(size.height, proposal.height))
+        }
+        return .init(width: 350, height: 350)
     }
     
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {

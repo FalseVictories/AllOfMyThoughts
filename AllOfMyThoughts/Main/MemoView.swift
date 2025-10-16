@@ -70,7 +70,7 @@ public struct MemoView: View {
                 MemoImageView(images: images) {
                     controller.sheetImage = $0
                 }
-                .frame(minHeight: 100, maxHeight: 400)
+                .frame(minHeight: 100, maxHeight: 350)
                 .clipped()
             }
             
