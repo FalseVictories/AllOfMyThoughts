@@ -3,7 +3,7 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [MemoModel]
+    @Query(sort: \MemoModel.timestamp, order: .reverse) private var items: [MemoModel]
     
     @State private var showAddMemo: Bool = false
     @State private var sheetHeight: CGFloat = 100
