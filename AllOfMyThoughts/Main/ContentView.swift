@@ -5,6 +5,16 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \MemoModel.timestamp, order: .reverse) private var items: [MemoModel]
     
+    var filteredResults: [MemoModel] {
+        guard !searchText.isEmpty else {
+            return items
+        }
+        
+        return items.filter {
+            $0.encryptedMemo.localizedCaseInsensitiveContains(searchText)
+        }
+    }
+    
     @State private var showAddMemo: Bool = false
     @State private var sheetHeight: CGFloat = 100
     
@@ -14,7 +24,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(items) { item in
+                ForEach(filteredResults) { item in
                     MemoView(timestamp: item.timestamp,
                              memo: item.encryptedMemo,
                              images: item.imagesFromData(),
@@ -26,7 +36,8 @@ struct ContentView: View {
             .searchable(text: $searchText)
             .toolbar {
                 if #available(iOS 26.0, *) {
-                    DefaultToolbarItem(kind: .search, placement: .bottomBar)
+                    DefaultToolbarItem(kind: .search,
+                                       placement: .bottomBar)
                     ToolbarSpacer(.flexible, placement: .bottomBar)
                 }
                 
